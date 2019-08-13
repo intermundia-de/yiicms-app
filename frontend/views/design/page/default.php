@@ -20,10 +20,10 @@ $children = $itemsQuery->all();
 ?>
 
 <div>
-    <h1><?php echo $model->renderAttribute('title'); ?></h1>
     <div>
         {{content}}
     </div>
+    <h1><?php echo $model->renderAttribute('title'); ?></h1>
 </div>
 
 

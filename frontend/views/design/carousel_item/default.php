@@ -10,17 +10,14 @@
 /** @var $model \intermundia\yiicms\models\CarouselItem */
 
 ?>
-
-<div id="content_<?php echo $contentTreeItem->id ?>" class="<?php echo $contentTreeItem->getCssClass() ?>item active">
-    <?php echo \common\helpers\Html::backgroundImage($model, 'image') ?>
-    <div class="carousel-caption">
-        <div class="display-table">
-            <div class="display-table-cell">
-                <div class="xmlblock">
-                    <?php echo $model->activeTranslation->caption ?>
-                </div>
-<!--                <button class="btn btn-primary btn-lg">--><?php //echo Yii::t('frontend', 'WATCH EDUCATIONAL MOVIE') ?><!--</button>-->
-            </div>
+<div id="content_<?php echo $contentTreeItem->id ?>"
+     class="<?php echo $contentTreeItem->getCssClass() ?> carousel-item <?php echo $index > 0 ? '' : 'active'; ?>">
+    <?php if ($model->activeTranslation->image): ?>
+        <img style="width: 100%" src="<?php echo $model->activeTranslation->image[0]->getUrl(); ?>" alt="">
+    <?php endif; ?>
+    <div class="carousel-caption d-none d-md-block">
+        <div class="xmlblock">
+            <?php echo $model->renderAttribute('caption') ?>
         </div>
     </div>
 </div>
