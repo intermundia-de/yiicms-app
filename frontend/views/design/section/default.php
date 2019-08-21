@@ -16,4 +16,10 @@ $content = $this->render('@frontend/views/content-tree/list', [
 ]);
 
 $template = str_replace('{{content}}', $content, $model->activeTranslation->template);
-echo str_replace('{{alias}}', 'alias_'.$model->activeTranslation->alias, $template);
+?>
+<div class="container">
+    <h2><?php echo $model->renderAttribute('title'); ?></h2>
+    <div class="row">
+        <?php echo str_replace('{{alias}}', 'alias_' . $model->activeTranslation->alias, $template); ?>
+    </div>
+</div>

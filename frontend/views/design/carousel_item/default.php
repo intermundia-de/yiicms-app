@@ -12,9 +12,7 @@
 ?>
 <div id="content_<?php echo $contentTreeItem->id ?>"
      class="<?php echo $contentTreeItem->getCssClass() ?> carousel-item <?php echo $index > 0 ? '' : 'active'; ?>">
-    <?php if ($model->activeTranslation->image): ?>
-        <img style="width: 100%" src="<?php echo $model->activeTranslation->image[0]->getUrl(); ?>" alt="">
-    <?php endif; ?>
+    <?php echo $model->renderImage('image'); ?>
     <div class="carousel-caption d-none d-md-block">
         <div class="xmlblock">
             <?php echo $model->renderAttribute('caption') ?>

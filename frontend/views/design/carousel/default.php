@@ -11,13 +11,13 @@
 /** @var $index integer */
 /** @var $model \intermundia\yiicms\models\Carousel */
 $directChildren = $contentTreeItem->getItemsQuery()->all();
-
+$carouselId = "carousel-content-$contentTreeItem->id"
 ?>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="<?php echo $carouselId ?>" class="carousel slide" data-ride="carousel">
     <?php if (count($directChildren) > 0): ?>
         <ol class="carousel-indicators">
             <?php foreach ($directChildren as $key => $child): ?>
-                <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $key; ?>"
+                <li data-target="#<?php echo $carouselId ?>" data-slide-to="<?php echo $key; ?>"
                     class="<?php $key > 0 ? '' : 'active'; ?>"></li>
             <?php endforeach; ?>
         </ol>
@@ -29,13 +29,13 @@ $directChildren = $contentTreeItem->getItemsQuery()->all();
         ]); ?>
     </div>
     <?php if (count($directChildren) > 0): ?>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#<?php echo $carouselId ?>" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only"><?php echo Yii::t('frontend', 'Previous'); ?></span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#<?php echo $carouselId ?>" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only"><?php echo Yii::t('frontend', 'Next'); ?></span>
         </a>
     <?php endif; ?>
 </div>

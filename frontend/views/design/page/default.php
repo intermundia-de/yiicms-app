@@ -23,7 +23,6 @@ $children = $itemsQuery->all();
     <div>
         {{content}}
     </div>
-    <h1><?php echo $model->renderAttribute('title'); ?></h1>
 </div>
 
 

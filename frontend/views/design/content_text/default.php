@@ -13,11 +13,12 @@
 $page = $this->contentTreeObject;
 ?>
 
-<div id="id_<?php echo $contentTreeItem->id ?>" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?>>
-    <h2><?php echo $model->activeTranslation->name; ?></h2>
+<div id="id_<?php echo $contentTreeItem->id ?>" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?> class="<?php echo $contentTreeItem->getCssClass(); ?> col-sm-4">
+    <?php echo $model->renderImage('image'); ?>
+    <h2><?php echo $model->renderAttribute('name'); ?></h2>
     <div class="xmlblock-wrapper">
         <div class="xmlblock" <?php echo $contentTreeItem->getEditableAttributes('multi_line', 'rich-text') ?>>
-            <?php echo $model->activeTranslation->multi_line; ?>
+            <?php echo $model->renderAttribute('multi_line'); ?>
         </div>
     </div>
     <?php echo $this->render('@frontend/views/content-tree/list', [

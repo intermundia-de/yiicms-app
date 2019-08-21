@@ -7,11 +7,11 @@ module.exports = {
       path.resolve(__dirname, './frontend/web/js/app.js'),
       path.resolve(__dirname, './frontend/web/js/content-editable/app.js'),
     ],
-    style: path.resolve(__dirname, './frontend/less/style.scss'),
-    // "style_de-DE": path.resolve(__dirname, './frontend/less/style_de-DE.scss'),
+    style: path.resolve(__dirname, './frontend/scss/style.scss'),
+    // "style_de-DE": path.resolve(__dirname, './frontend/scss/style_de-DE.scss'),
     ckeditor: [
-      path.resolve(__dirname, './frontend/less/ckeditor.scss'),
-      path.resolve(__dirname, './frontend/less/xmlblock.scss'),
+      path.resolve(__dirname, './frontend/scss/ckeditor.scss'),
+      path.resolve(__dirname, './frontend/scss/xmlblock.scss'),
     ],
   },
   output: {

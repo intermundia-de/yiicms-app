@@ -54,11 +54,11 @@ class FrontendAsset extends AssetBundle
             $this->js[] = 'js/notify.min.js';
         }
 
-//        if (file_exists(\Yii::getAlias($this->basePath . '/bundle/style_' . \Yii::$app->language . '.css'))) {
-//            $this->css[] = 'bundle/style_' . \Yii::$app->language . '.css';
-//        } else {
-//            $this->css[] = 'bundle/style.css';
-//        }
+        if (file_exists(\Yii::getAlias($this->basePath . '/bundle/style_' . \Yii::$app->language . '.css'))) {
+            $this->css[] = 'bundle/style_' . \Yii::$app->language . '.css';
+        } else {
+            $this->css[] = 'bundle/style.css';
+        }
 
         if (file_exists(\Yii::getAlias($this->basePath . '/bundle/style_' . \Yii::$app->language . '.js'))) {
             $this->js[] = 'bundle/style_' . \Yii::$app->language . '.js';
