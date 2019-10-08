@@ -7,11 +7,11 @@ module.exports = {
       path.resolve(__dirname, './frontend/web/js/app.js'),
       path.resolve(__dirname, './frontend/web/js/content-editable/app.js'),
     ],
-    style: path.resolve(__dirname, './frontend/less/style.scss'),
-    // "style_de-DE": path.resolve(__dirname, './frontend/less/style_de-DE.scss'),
+    style: [path.resolve(__dirname, './frontend/less/style.less')],
+    // bootstrap: [path.resolve(__dirname, './frontend/less/bootstrap.less')],
     ckeditor: [
-      path.resolve(__dirname, './frontend/less/ckeditor.scss'),
-      path.resolve(__dirname, './frontend/less/xmlblock.scss'),
+      path.resolve(__dirname, './frontend/less/ckeditor.less'),
+      path.resolve(__dirname, './frontend/less/xmlblock.less'),
     ],
   },
   output: {
@@ -31,12 +31,12 @@ module.exports = {
         ]
       },
       {
-        test: /\.scss$/,
+        test: /\.less$/,
         use: ExtractTextPlugin.extract({
           use: [
             {loader: 'css-loader', options: {minimize: true, sourceMap: true}},
             {
-              loader: "sass-loader",
+              loader: "less-loader",
               options: {
                 minimize: true,
                 sourceMap: true
@@ -65,3 +65,4 @@ module.exports = {
   ],
   devtool: 'source-map'
 };
+

@@ -7,6 +7,7 @@ return [
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [
+//        ['pattern' => 'cache/<path:(.*)>', 'route' => 'glide/index', 'encodeParams' => false],
 //        [
 //            'pattern' => 'file/<action:[\w\-]+>',
 //            'route' => 'file/<action>',
@@ -20,7 +21,7 @@ return [
             'route' => 'core/<controller>/<action>'
         ],
         [
-            'pattern' => '<language>/search',
+            'pattern' => 'search',
             'route' => 'site/search'
         ],
         [

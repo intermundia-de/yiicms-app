@@ -1351,19 +1351,20 @@
         },
         {
             "name": "intermundia/yiicms",
-            "version": "v2",
+            "version": "v2.3.34-rc",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intermundia-de/yiicms.git",
-                "reference": "4baf6fc204aa6d3b5fce5f7f617f5510c6bad01a"
+                "reference": "934d6ecac89bba41deeedb474c2bc2c887a1ac0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intermundia-de/yiicms/zipball/4baf6fc204aa6d3b5fce5f7f617f5510c6bad01a",
-                "reference": "4baf6fc204aa6d3b5fce5f7f617f5510c6bad01a",
+                "url": "https://api.github.com/repos/intermundia-de/yiicms/zipball/934d6ecac89bba41deeedb474c2bc2c887a1ac0d",
+                "reference": "934d6ecac89bba41deeedb474c2bc2c887a1ac0d",
                 "shasum": ""
             },
             "require": {
+                "apollo11/yii2-logger": "^v1.3.0",
                 "kartik-v/yii2-widget-select2": "*",
                 "yiisoft/yii2": "~2.0.0"
             },

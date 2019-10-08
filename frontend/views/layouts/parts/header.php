@@ -2,69 +2,98 @@
 
 use intermundia\yiicms\helpers\LanguageHelper;
 use intermundia\yiicms\models\Language;
+use intermundia\yiicms\widgets\FrontendLanguageSelector;
+use intermundia\yiicms\widgets\NestedMenu;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\helpers\Html;
-
-echo \intermundia\yiicms\widgets\ContentEditingToolbar::widget();
+use yii\helpers\Url;
 
 $metaNavItems = \frontend\models\ContentTree::getItemsForMenu('header-meta-nav');
-/** @var  $logoImages intermundia\yiicms\models\FileManagerItem[] */
-$logoImages = Yii::$app->websiteContentTree->getModel()->activeTranslation->logo_image;
+$menuItems = \frontend\models\ContentTree::getItemsForMenu('header');
 
-$languageDomains = array_unique(\Yii::$app->multiSiteCore->websites[Yii::$app->websiteContentTree->key]['domains']);
-$activeLanguageIndex = 0;
-$currentLanguage = null;
-$protocol = Yii::$app->request->getIsSecureConnection() ? 'https' : 'http';
-foreach ($languageDomains as $languageDomain => $langCode) {
-    if (substr($langCode, 0, 2) == 'en') {
-        unset($languageDomains[$languageDomain]);
-    } else {
+//$cartContentTree = ContentTree::find()->byView('cart')->notDeleted()->notHidden()->one();
+//$cartUrl = $cartContentTree ? $cartContentTree->getUrl() : Url::to('#');
 
-        $language = Language::find()->byCode($langCode)->one();
-        $languageDomains[$languageDomain] = $language;
-        if ($langCode == Yii::$app->language) {
-            $currentLanguage = $language;
-        }
-    }
-}
 ?>
 
-<?php Navbar::begin([
-    'brandLabel' => 'YiiCMS',
-    'options' => [
-        'class' => ['navbar-dark', 'bg-dark', 'navbar-expand-md']
-    ]
-]); ?>
+<header>
+    <nav id="headerTop" class="navbar navbar-inverse">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="<?php echo Yii::$app->homeUrl; ?>">
+                    <?php echo Yii::$app->websiteContentTree->getModel()->renderImage('logo_image'); ?>
+                </a>
+            </div>
 
-<?php echo Nav::widget([
-    'items' => [
-        [
-            'label' => 'Home',
-            'url' => ['site/index'],
-            'linkOptions' => [],
-        ],
-        [
-            'label' => 'Dropdown',
-            'items' => [
-                ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
-                '<div class="dropdown-divider"></div>',
-                '<div class="dropdown-header">Dropdown Header</div>',
-                ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
-            ],
-        ],
-        [
-            'label' => 'Login',
-            'url' => ['site/login'],
-            'visible' => Yii::$app->user->isGuest
-        ],
-    ],
-    'options' => ['class' => 'navbar-nav mr-auto'], // set this to nav-tab to get tab-styled navigation
-]);
-?>
-<form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
 
-<?php Navbar::end(); ?>
+            <form class="navbar-form form-search navbar-right" method="get" action="<?php echo \yii\helpers\Url::to(['/site/search'])?>">
+                <!--                    <div class="form-group">-->
+                <!--                        <input type="text" class="form-control" placeholder="Search">-->
+                <!--                    </div>-->
+
+                <input class="form-control" name="content" value="<?php echo Yii::$app->request->get('content') ?>">
+                <button id="searchBtn" type="button" class="btn btn-default">
+                    <i class="fa fa-search fa-rotate-90"></i>
+                </button>
+            </form>
+            <?php echo \yii\bootstrap\Nav::widget([
+                'options' => [
+                    'class' => 'nav navbar-nav nav-meta navbar-right'
+                ],
+                'encodeLabels' => false,
+                'items' => \intermundia\yiicms\helpers\Html::convertToNavData($metaNavItems)
+            ]) ?>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <nav id="headerBottom" class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button id="mobile-menu-toggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span>
+                        <span class="icon-bar top-bar"></span>
+                        <span class="icon-bar middle-bar"></span>
+                        <span class="icon-bar bottom-bar"></span>
+                    </span>
+                    <!--                    <img  src="/icon/icon-accordion-close.svg">-->
+                </button>
+                <a class="navbar-brand visible-sm visible-xs" href="<?php echo Yii::$app->homeUrl; ?>">
+                    <?php echo Yii::$app->websiteContentTree->getModel()->renderImage('logo_image'); ?>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <?php echo \intermundia\yiicms\widgets\NestedMenu::widget([
+                    'dropDownCaret' => false,
+                    'options' => [
+                        'class' => 'nav navbar-nav navbar-menu'
+                    ],
+                ]) ?>
+                <div class="visible-sm visible-xs">
+                    <form class="navbar-form form-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="content"
+                                   value="<?php echo Yii::$app->request->get('content') ?>">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search fa-rotate-90 search-icon"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                    <?php echo \yii\bootstrap\Nav::widget([
+                        'options' => [
+                            'class' => 'nav navbar-nav nav-meta navbar-right'
+                        ],
+                        'items' => \intermundia\yiicms\helpers\Html::convertToNavData($metaNavItems)
+                    ]) ?>
+                </div>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>

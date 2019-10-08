@@ -1,4 +1,7 @@
 <?php
+
+use intermundia\yiicms\models\Page;
+
 $config = [
     'name' => 'YiiCMS.de',
     'vendorPath' => __DIR__ . '/../../vendor',
@@ -24,6 +27,10 @@ $config = [
         'contentTree' => [
             'class' => \intermundia\yiicms\components\ContentTree::class,
             'editableContent' => [
+                'story' => [
+                    'class' => Page::class,
+                    'displayName' => Yii::t('common', 'Story'),
+                ],
             ],
             'customViews' => [
             ]
